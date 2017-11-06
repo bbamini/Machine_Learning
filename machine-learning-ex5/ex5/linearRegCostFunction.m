@@ -19,9 +19,15 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
+% Adding column of ones to X
+%X_t = [ones(m,1), X]; -(h(1)-y(1)).^2; 
 
+J = 1/(2*m) * (sum((X * theta - y).^2)) + ...
+    lambda/(2*m)*(sum(theta.^2)- (theta(1))^2);
 
-
+diff = zeros(size(theta));
+diff(1) = lambda/m*theta(1);
+grad = 1/m * (X'*(X*theta - y)) + lambda/m * theta - diff;
 
 
 
